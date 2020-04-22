@@ -1,0 +1,41 @@
+
+<h2 style="color: black; margin-left: 45%; font-size:40px; margin-top: -7%;" >Crear Contenido</h2>
+<form style="color: black; margin-left: 45%; font-size:40px; ">
+    <div class="form-group">
+        <input type="text" name="name" [(ngModel)]="categoria.name" placeholder="Titulo del contenido" >
+    </div>
+    <div >
+        <textarea  name="username" placeholder="Descripcion" [(ngModel)]="categoria.username" cols="24" rows="2"></textarea>
+    </div>
+    <!--<select [(ngModel)]="peel" style="font-size: 50%;">
+        <option *ngFor="let peel of peel" [value]="peel.id" >
+            {{peel.title}}
+        </option>
+        
+    </select>-->
+
+
+<hr>
+
+
+  
+<hr>
+
+<h2 style="color: black; margin-left: 45%; font-size:40px;" >Quiz</h2>
+    <div class="pregresp">
+        <div class="pregunta"><input type="text" placeholder="Escriba la pregunta "><br />
+        </div>
+        <hr>
+        <div class="respuestas" style="font-size: 25px; " >
+          <input type="text" name="preg1" placeholder="Escriba una respuesta"/><br />
+          <input type="text" name="preg1"   placeholder="Escriba la rta correcta" /> <br />
+          <input type="text" name="preg1"  placeholder="Escriba una respuesta" cols="24" rows="2"/> <br />
+        </div>
+      </div>
+
+
+      <button (click)="edit ? updateCategoria() : SaveCategoria()" class="btn btn-success " >
+        Guardar
+    </button>
+
+</form>

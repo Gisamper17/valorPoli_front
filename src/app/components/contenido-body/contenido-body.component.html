@@ -1,0 +1,20 @@
+
+<h2 style="color: black; margin-left: 45%; font-size:40px; margin-top: -7%;" >Actualizar</h2>
+<form style="color: black; margin-left: 45%; font-size:40px; ">
+    <div class="form-group">
+        <input type="text" name="name" [(ngModel)]="todos.name" placeholder="Titulo del contenido" >
+    </div>
+    <div >
+        <textarea  name="username" placeholder="Descripcion" [(ngModel)]="todos.username" cols="24" rows="2"></textarea>
+    </div>
+
+<hr>
+
+
+
+
+      <button (click)="actualizar(todos)" class="btn btn-success " >
+        Guardar
+    </button>
+
+</form>
