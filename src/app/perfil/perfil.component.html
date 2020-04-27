@@ -1,0 +1,151 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+    <title>Valor Poli</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<script>
+    $(document).ready(function () {
+
+
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+    });
+
+    $(document).on("click", ".browse", function () {
+        var file = $(this).parents().find(".file");
+        file.trigger("click");
+    });
+    $('input[type="file"]').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $("#file").val(fileName);
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("preview").src = e.target.result;
+        };
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    });
+
+</script>
+
+<!-- <div class="row" style="background-color: #D5EAF2; color: black; padding: 10%; font-size:15px"> -->
+<div class="row" style="background-color: #0F385A; color: black; padding: 15%; font-size:15px; margin-top: -10%;">
+</div>
+<div class="text-center" style="margin-top: -8%; color: black; background-color: #F4F5F5; width: 101.40%;">
+    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"
+        style="margin-top: -10%;">
+    <h1 style="background-color: #F4F5F5;margin-bottom: 0px;">Juanito Alimaña</h1>
+    <!-- <h6>Upload a different photo...</h6> -->
+    <!-- <input type="file" class="text-center center-block file-upload" value=""> -->
+</div>
+<!-- margin-left: 7%; -->
+
+<div class="row" style="padding: 7%; color: black; font-size:15px;  background-color: #F4F5F5;">
+    <div class="col-sm-3">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Sobre mi <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body">
+                <p>Estudiante del Politecnico grancolombiano</p>
+            </div>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item text-muted">Actividades <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left" (click)="muestra(1)"><strong>Mi
+                        perfil</strong></span></li>
+            <li class="list-group-item text-right"><span class="pull-left" id="fav"
+                    (click)="muestra(3)"><strong>Favoritos</strong></span> 13</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Amigos</strong></span> 78</li>
+        </ul>
+
+    </div>
+
+    <div class="col-sm-9">
+        <ul class="nav nav-tabs">
+            <li class="active" id="misD"><a data-toggle="tab" href="#" (click)="muestra(1)">Mis datos</a></li>
+            <li id="actD"><a data-toggle="tab" href="#" (click)="muestra(2)">Actualizar datos</a></li>
+        </ul>
+
+        <!-- aqui van los formularios -->
+        <app-perfil-list id="home" *ngIf="show"></app-perfil-list>
+        <app-perfil-act id="messages" *ngIf="!show"></app-perfil-act>
+        <!-- <app-guardados id="faves" *ngIf="opci == 3"></app-guardados> -->
+
+        <br><br>
+        <table border="0">
+            <tr>
+                <td style="width: 30px; height: 30px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="width: 200px;">
+                    <!-- <button (click)="eliminar(identif)" *ngIf="opci == 1">Eliminar cuenta</button> -->
+                    <!-- <div class="tab-pane">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Mis gustos</div>
+                            <div class="panel-body">
+                                <span class="tag label label-info">Quimica<span data-role="remove"></span></span> &nbsp; 
+                                <span class="tag label label-info">Ingl&eacute;s<span data-role="remove"></span></span> &nbsp;
+                                <span class="tag label label-info">Fisica<span data-role="remove"></span></span>
+                                <br>
+                                <span class="tag label label-info">Matematicas<span
+                                        data-role="remove"></span></span>
+                            </div>
+                        </div>
+                    </div> -->
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<style>
+    .file {
+        visibility: hidden;
+        position: absolute;
+    }
+</style>
+
+<div class="ml-2 col-sm-6">
+    <div id="msg"></div>
+    <form method="post" id="image-form">
+        <input type="file" name="img[]" class="file" accept="image/*">
+        <div class="input-group my-3">
+            <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+            <div class="input-group-append">
+                <button type="button" class="browse btn btn-primary">Browse...</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="ml-2 col-sm-6">
+    <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+</div>
